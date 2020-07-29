@@ -6,24 +6,23 @@ from __future__ import unicode_literals
 import uuid
 
 from django.utils.encoding import python_2_unicode_compatible
-from django.conf import settings
 from django.db import models
 
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
 from zanhu.notifications.views import notification_handler
-
+from zanhu.users.models import User
 
 @python_2_unicode_compatible
-class News(models.Model):
+class News(models.Model): # 既表示文章又表示评论
     uuid_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL,
                              related_name='publisher', verbose_name='用户')
     parent = models.ForeignKey("self", blank=True, null=True, on_delete=models.CASCADE,
                                related_name='thread', verbose_name='自关联')
     content = models.TextField(verbose_name='动态内容')
-    liked = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_news', verbose_name='点赞用户')
+    liked = models.ManyToManyField(User, related_name='liked_news', verbose_name='点赞用户')
     reply = models.BooleanField(default=False, verbose_name='是否为评论')
     created_at = models.DateTimeField(db_index=True, auto_now_add=True, verbose_name='创建时间')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')

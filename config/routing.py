@@ -2,10 +2,10 @@
 # -*- coding:utf-8 -*-
 # __author__ = '__Jack__'
 
-from django.urls import path
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
+from django.urls import path
 
 from zanhu.messager.consumers import MessagesConsumer
 from zanhu.notifications.consumers import NotificationsConsumer
@@ -24,6 +24,16 @@ application = ProtocolTypeRouter({
         )
     )
 })
+
+# application = ProtocolTypeRouter({
+#     # 普通的HTTP请求不需要我们手动在这里添加，框架会自动加载03
+#     'websocket': AuthMiddlewareStack(
+#         URLRouter([
+#             path('ws/notifications/', NotificationsConsumer),
+#             path('ws/<str:username>/', MessagesConsumer),
+#         ])
+#     )
+# })
 
 """
 OriginValidator或AllowedHostsOriginValidator可以防止通过WebSocket进行CSRF攻击

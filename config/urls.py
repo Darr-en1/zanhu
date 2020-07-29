@@ -3,8 +3,8 @@
 # __author__ = '__Jack__'
 
 from django.conf import settings
-from django.urls import include, path
 from django.conf.urls.static import static
+from django.urls import include, path
 from django.views import defaults as default_views
 
 from zanhu.news.views import NewsListView
