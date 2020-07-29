@@ -13,11 +13,10 @@ class MessagesConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         if self.scope['user'].is_anonymous:
             # 未登录的用户拒绝连接
-            username = "darr_en1"
+            await self.close()
         else:
-            username = self.scope['user'].username
-        await self.channel_layer.group_add(username, self.channel_name)
-        await self.accept()
+            await self.channel_layer.group_add(self.scope['user'].username, self.channel_name)
+            await self.accept()
 
     async def receive(self, text_data=None, bytes_data=None):
         """接收私信"""
