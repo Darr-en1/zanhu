@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
-# __author__ = '__Jack__'
+# __author__ = 'Darr_en1'
 
 from django.conf import settings
 from django.conf.urls.static import static
