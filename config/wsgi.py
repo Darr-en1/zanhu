@@ -20,6 +20,7 @@ from django.core.wsgi import get_wsgi_application
 
 # This allows easy placement of apps within the interior
 # zanhu directory.
+# 将django项目路径(zanhu.zanhu)加入到查找路径中取，可以让wsgi server 查找到
 app_path = os.path.abspath(os.path.join(
     os.path.dirname(os.path.abspath(__file__)), os.pardir))
 sys.path.append(os.path.join(app_path, 'zanhu'))
