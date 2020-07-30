@@ -2,14 +2,15 @@
 # -*- coding:utf-8 -*-
 # __author__ = 'Darr_en1'
 
-import os
 import sys
-from tornado.options import options, define
-from django.core.wsgi import get_wsgi_application
+
+import os
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 import tornado.wsgi
+from django.core.wsgi import get_wsgi_application
+from tornado.options import options, define
 
 # Django Application加入查找路径中
 app_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
@@ -21,7 +22,8 @@ def main():
     tornado.options.parse_command_line()
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
     wsgi_app = tornado.wsgi.WSGIContainer(get_wsgi_application())
-    http_server = tornado.httpserver.HTTPServer(wsgi_app, xheaders=True)  # xheaders=True是啥意思？
+    # xheaders=True 表明后端可以接收到前端ip
+    http_server = tornado.httpserver.HTTPServer(wsgi_app, xheaders=True)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
