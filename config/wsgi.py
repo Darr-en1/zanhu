@@ -39,3 +39,8 @@ application = get_wsgi_application()
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
+
+"""
+gunicorn 执行
+pipenv run gunicorn --env DJANGO_SETTINGS_MODULE=config.settings.production -b 0.0.0.0:9000 --chdir /root/zanhu/zanhu config.wsgi
+"""
