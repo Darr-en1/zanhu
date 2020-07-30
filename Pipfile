@@ -45,6 +45,7 @@ amqp = {file = "https://github.com/celery/py-amqp/zipball/master"}
 kombu = {file = "https://github.com/celery/kombu/zipball/master"}
 vine = {file = "https://github.com/celery/vine/zipball/master"}
 celery = {file = "https://github.com/celery/celery/zipball/master"}
+websocket-client = "*"
 
 [requires]
 python_version = "3.7"

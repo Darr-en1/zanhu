@@ -43,10 +43,11 @@ DEBUG_TOOLBAR_CONFIG = {
         'debug_toolbar.panels.redirects.RedirectsPanel',
     ],
     'SHOW_TEMPLATE_CONTEXT': True,
-    'SQL_WARNING_THRESHOLD': 2
+    'SQL_WARNING_THRESHOLD': 0.8  # sql 查询实践阈值 ms
 }
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
-INTERNAL_IPS = ['127.0.0.1', '10.0.0.63']
+INTERNAL_IPS = ['127.0.0.1', '10.0.0.63', '192.168.98.1']
+# INTERNAL_IPS = ['127.0.0.1', '10.0.0.63']
 
 # django-extensions
 # ------------------------------------------------------------------------------
