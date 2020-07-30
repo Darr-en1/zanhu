@@ -34,6 +34,8 @@ USE_L10N = True  # 使用当前语言环境的格式显示数字和日期
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
+# WSGI_APPLICATION = 'config.wsgi.application' # 使用ASGI 这个就不会启动了
+
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -109,6 +111,8 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'news:list'  # 登录跳转配置
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = 'account_login'
+
+# session的认证信息缓存在缓存数据库里面,在CACHES中配置
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # PASSWORDS
@@ -243,6 +247,9 @@ EMAIL_HOST_PASSWORD = env('DJANGO_EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL')
 
 # Celery
+# https://flower-docs-cn.readthedocs.io/zh/latest/#
+# 安装 flower :Flower是基于web的监控和管理Celery的工具.
+
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['zanhu.taskapp.celery.CeleryAppConfig']
 if USE_TZ:
